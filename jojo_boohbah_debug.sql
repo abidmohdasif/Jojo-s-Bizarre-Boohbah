@@ -55,6 +55,6 @@ FROM boohbah_stand_link);
 -- Fixed Question 10
 MERGE INTO boohbah b
 USING boohbah_stand_link l
-ON (b.boohbah_id = s.stand_id)
+ON (b.boohbah_id = l.stand_id)
 WHEN MATCHED THEN
 UPDATE SET b.energy_level = 999;
