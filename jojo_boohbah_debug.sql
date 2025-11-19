@@ -37,6 +37,12 @@ WHERE energy_level > MAX (SELECT power FROM jojo_stand WHERE season = 3);
 SELECT b.name, s.stand_name
 FROM boohbah b, jojo_stand s
 WHERE b.energy_level > 80 and b.boohbah_id = s.boohbah_id;
+-- Correct
+SELECT b.name, s.stand_name
+FROM boohbah b
+JOIN boohbah_stand_link l ON b.boohbah_id = l.boohbah_id
+JOIN jojo_stand s ON l.stand_id = s.stand_id
+WHERE b.energy_level > 80;
 
 -- Fixed Question 8
 SELECT b.name, s.stand_name
@@ -45,6 +51,11 @@ JOIN boohbah_stand_link l on b.boohbah_id = l.boohbah_id
 JOIN jojo_stand s on l.stand_id = s.stand_id
 WHERE b.energy_level > 80;
 
+-- Correct
+SELECT boohbah_id, sync_level
+FROM boohbah_stand_link
+WHERE sync_level > (SELECT AVG(sync_level)
+                    FROM boohbah_stand_link);
 -- Fixed Question 9
 SELECT boohbah_id, stand_id
 FROM boohbah_stand_link
